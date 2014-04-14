@@ -450,10 +450,6 @@ _clState *initCl(unsigned int gpu, char *name, size_t nameSize)
 		applog(LOG_WARNING, "Kernel quarkcoin is experimental.");
 		strcpy(filename, QUARKCOIN_KERNNAME".cl");
 		strcpy(binaryfilename, QUARKCOIN_KERNNAME);
-	} else if (strcmp(cgpu->kernelname, MYRIADCOIN_GROESTL_KERNNAME) == 0){
-		applog(LOG_WARNING, "Kernel myriadcoin-groestl is experimental.");
-		strcpy(filename, MYRIADCOIN_GROESTL_KERNNAME".cl");
-		strcpy(binaryfilename, MYRIADCOIN_GROESTL_KERNNAME);
 	} else if (strcmp(cgpu->kernelname, FUGUECOIN_KERNNAME) == 0){
 		applog(LOG_WARNING, "Kernel fuguecoin is experimental.");
 		strcpy(filename, FUGUECOIN_KERNNAME".cl");
@@ -474,6 +470,18 @@ _clState *initCl(unsigned int gpu, char *name, size_t nameSize)
 		applog(LOG_WARNING, "Kernel groestlcoin is experimental.");
 		strcpy(filename, SIFCOIN_KERNNAME".cl");
 		strcpy(binaryfilename, SIFCOIN_KERNNAME);
+	} else if (strcmp(cgpu->kernelname, MYRIADCOIN_GROESTL_KERNNAME) == 0){
+		applog(LOG_WARNING, "Kernel myriadcoin-groestl is experimental.");
+		strcpy(filename, MYRIADCOIN_GROESTL_KERNNAME".cl");
+		strcpy(binaryfilename, MYRIADCOIN_GROESTL_KERNNAME);
+	} else if (strcmp(cgpu->kernelname, MYRIADCOIN_SKEIN_KERNNAME) == 0){
+		applog(LOG_WARNING, "Kernel myriadcoin-skein is experimental.");
+		strcpy(filename, MYRIADCOIN_SKEIN_KERNNAME".cl");
+		strcpy(binaryfilename, MYRIADCOIN_SKEIN_KERNNAME);
+	} else if (strcmp(cgpu->kernelname, MYRIADCOIN_QUBIT_KERNNAME) == 0){
+		applog(LOG_WARNING, "Kernel myriadcoin-qubit is experimental.");
+		strcpy(filename, MYRIADCOIN_QUBIT_KERNNAME".cl");
+		strcpy(binaryfilename, MYRIADCOIN_QUBIT_KERNNAME);
 	} else {
 		applog(LOG_WARNING, "Kernel was not chosen.");
 	}
