@@ -1,4 +1,3 @@
-
 ACLOCAL_AMFLAGS = -I m4
 
 JANSSON_CPPFLAGS= -I$(top_builddir)/compat/jansson-2.5/src -I$(top_srcdir)/compat/jansson-2.5/src
@@ -48,6 +47,8 @@ sgminer_SOURCES += darkcoin.c darkcoin.h
 sgminer_SOURCES += qubitcoin.c qubitcoin.h
 sgminer_SOURCES += quarkcoin.c quarkcoin.h
 sgminer_SOURCES += myriadcoin-groestl.c myriadcoin-groestl.h
+sgminer_SOURCES += myriadcoin-qubit.c myriadcoin-qubit.h
+sgminer_SOURCES += myriadcoin-skein.c myriadcoin-skein.h
 sgminer_SOURCES += fuguecoin.c fuguecoin.h
 sgminer_SOURCES += inkcoin.c inkcoin.h
 sgminer_SOURCES += animecoin.c animecoin.h
