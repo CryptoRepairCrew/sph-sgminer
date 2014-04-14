@@ -1064,6 +1064,22 @@ static cl_int queue_sph_kernel(_clState *clState, dev_blk_ctx *blk, __maybe_unus
 	return status;
 }
 
+static cl_int queue_skein_kernel(_clState *clState, dev_blk_ctx *blk, __maybe_unused cl_uint threads)
+{
+        cl_kernel *kernel = &clState->kernel;
+        unsigned int num = 0;
+        cl_int status = 0;
+        int i;
+        for (i = 0; i < 8; i++) {
+            status |= clSetKernelArg(*kernel, num++, sizeof(cl_ulong), blk->skein_midstate + i);
+        }
+        for (i = 0; i < 3; i++) {
+            status |= clSetKernelArg(*kernel, num++, sizeof(cl_uint), blk->skein_data + i);
+        }
+        CL_SET_ARG(clState->outputBuffer);
+
+        return status;
+}
 
 static void set_threads_hashes(unsigned int vectors, unsigned int compute_shaders, int64_t *hashes, size_t *globalThreads,
 			       unsigned int minthreads, __maybe_unused int *intensity, __maybe_unused int *xintensity, __maybe_unused int *rawintensity)
@@ -1375,8 +1391,7 @@ static bool opencl_thread_init(struct thr_info *thr)
 		thrdata->queue_kernel_parameters = &queue_sph_kernel;
 	else if (strcmp(gpu->kernelname, QUARKCOIN_KERNNAME) == 0)
 		thrdata->queue_kernel_parameters = &queue_sph_kernel;
-	else if (strcmp(gpu->kernelname, MYRIADCOIN_GROESTL_KERNNAME) == 0)
-		thrdata->queue_kernel_parameters = &queue_sph_kernel;
+;
 	else if (strcmp(gpu->kernelname, FUGUECOIN_KERNNAME) == 0)
 		thrdata->queue_kernel_parameters = &queue_sph_kernel;
 	else if (strcmp(gpu->kernelname, INKCOIN_KERNNAME) == 0)
@@ -1387,6 +1402,12 @@ static bool opencl_thread_init(struct thr_info *thr)
 		thrdata->queue_kernel_parameters = &queue_sph_kernel;
 	else if (strcmp(gpu->kernelname, SIFCOIN_KERNNAME) == 0)
 		thrdata->queue_kernel_parameters = &queue_sph_kernel;
+	else if (strcmp(gpu->kernelname, MYRIADCOIN_GROESTL_KERNNAME) == 0)
+		thrdata->queue_kernel_parameters = &queue_sph_kernel;
+	else if (strcmp(gpu->kernelname, MYRIADCOIN_QUBIT_KERNNAME) == 0)
+		thrdata->queue_kernel_parameters = &queue_sph_kernel;
+	else if (strcmp(gpu->kernelname, MYRIADCOIN_SKEIN_KERNNAME) == 0)
+		thrdata->queue_kernel_parameters = &queue_skein_kernel;
 	else
 		applog(LOG_ERR, "Failed to choose kernel in opencl_thread_init");
 
