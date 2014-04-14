@@ -1391,7 +1391,6 @@ static bool opencl_thread_init(struct thr_info *thr)
 		thrdata->queue_kernel_parameters = &queue_sph_kernel;
 	else if (strcmp(gpu->kernelname, QUARKCOIN_KERNNAME) == 0)
 		thrdata->queue_kernel_parameters = &queue_sph_kernel;
-;
 	else if (strcmp(gpu->kernelname, FUGUECOIN_KERNNAME) == 0)
 		thrdata->queue_kernel_parameters = &queue_sph_kernel;
 	else if (strcmp(gpu->kernelname, INKCOIN_KERNNAME) == 0)
