@@ -1136,6 +1136,9 @@ typedef struct {
 	cl_uint oneA, twoA, threeA, fourA, fiveA, sixA, sevenA;
 
 	struct work *work;
+	cl_ulong skein_midstate[8];
+	cl_uint skein_data[3];
+#endif
 } dev_blk_ctx;
 
 struct curl_ent {
